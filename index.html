@@ -981,7 +981,7 @@ function renderDesigns(designs, orientation) {
     html += `
       <div class="design-tile">
         <div class="tile-img-area ${isV ? 'vertical' : ''}">
-          <img src="${d.imageUrl}" alt="${d.label}" onload="this.previousElementSibling?.remove()" onerror="this.parentElement.innerHTML='<div style=&quot;color:var(--gray);font-size:13px;text-align:center;padding:2rem;&quot;>Image load failed</div>'" />
+          <img src="${d.imageUrl}" alt="${d.label}" onload="this.nextElementSibling?.remove()" onerror="this.parentElement.innerHTML='<div style=&quot;color:var(--gray);font-size:13px;text-align:center;padding:2rem;&quot;>Image load failed</div>'" />
           <div class="tile-skeleton"></div>
         </div>
         <div class="tile-footer">
