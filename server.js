@@ -60,32 +60,21 @@ app.post('/api/generate', async (req, res) => {
     const styleVariants = [
       {
         label: 'Variant A — Premium',
-        styleBoost: 'ultra-premium, metallic sheen, embossed details, photorealistic 3D render of a credit card lying on a dark surface',
+        styleBoost: 'ultra-premium metallic finish, deep reflective sheen, embossed surface detail',
       },
       {
         label: 'Variant B — Editorial',
-        styleBoost: 'editorial flat design, bold typography, geometric shapes, clean modern layout, top-down product photography style',
+        styleBoost: 'bold geometric abstraction, editorial graphic design approach, strong typographic energy',
       },
       {
         label: 'Variant C — Artistic',
-        styleBoost: 'artistic painterly illustration, textured background, soft light and shadow, luxury lifestyle feel',
+        styleBoost: 'painterly artistic illustration, expressive color layering, textured surface treatment',
       },
     ];
 
     // Run all 3 generations in parallel for speed
     const generationPromises = styleVariants.map(async (variant) => {
-      const fullPrompt = `
-        ${prompt}
-        
-        Visual style direction: ${variant.styleBoost}
-        
-        Important requirements:
-        - This is ONLY the card face artwork/design — no hands, no person holding the card
-        - The card should fill most of the frame
-        - High quality, professional credit card design
-        - ${orientation === 'vertical' ? 'Portrait/vertical card orientation' : 'Landscape/horizontal card orientation'}
-        - No text or card numbers visible, focus on the visual design and color palette only
-      `.trim();
+      const fullPrompt = `${prompt}\n\nVariant differentiator: ${variant.styleBoost}`;
 
       const response = await openai.images.generate({
         model: 'dall-e-3',
